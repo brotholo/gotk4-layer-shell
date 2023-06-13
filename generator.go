@@ -8,10 +8,19 @@ import (
 	"os"
 
 	"github.com/diamondburned/gotk4/gir"
-	"github.com/diamondburned/gotk4/gir/cmd/gir_generate/gendata"
-	"github.com/diamondburned/gotk4/gir/cmd/gir_generate/genutil"
+	"github.com/diamondburned/gotk4/gir/cmd/gir-generate/gendata"
+
+	//  "github.com/diamondburned/gotk4/gir/cmd/gir-generate/genutil"
 	"github.com/diamondburned/gotk4/gir/girgen"
-	"github.com/diamondburned/gotk4/gir/girgen/logger"
+	//  gir/cmd/gir-generate/genmain/genmain.go
+	//  "github.com/diamondburned/gotk4/gir/cmd/gir_generate/genutil"
+	//  "github.com/diamondburned/gotk4/gir/girgen"
+	//  "github.com/diamondburned/gotk4/gir/girgen"
+	genutil "github.com/diamondburned/gotk4/gir/cmd/gir-generate/genmain"
+	// gir/cmd/gir-generate/genmain/genmain.go
+	// "github.com/diamondburned/gotk4/gir/cmd/gir_generate/genutil"
+	// "github.com/diamondburned/gotk4/gir/girgen"
+	// "github.com/diamondburned/gotk4/gir/girgen/logger"
 )
 
 var (
@@ -30,9 +39,9 @@ func init() {
 		log.Fatalln("Missing -o output directory.")
 	}
 
-	if verbose {
-		girgen.DefaultOpts.LogLevel = logger.Debug
-	}
+	//  if verbose {
+	//  girgen.DefaultOpts.LogLevel = logger.Debug
+	//  }
 }
 
 func main() {

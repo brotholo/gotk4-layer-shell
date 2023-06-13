@@ -1,10 +1,10 @@
-module github.com/diamondburned/gotk4-layer-shell
+module github.com/brotholo/gotk4-layer-shell
 
 go 1.17
 
 require (
-	github.com/diamondburned/gotk4 v0.0.3-0.20220417091308-856167c02355
-	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
+	github.com/diamondburned/gotk4 v0.0.4
+	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c // indirect
 )
 
 require (

@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/diamondburned/gotk4/gir"
-	"github.com/diamondburned/gotk4/gir/cmd/gir_generate/gendata"
+	"github.com/diamondburned/gotk4/gir/cmd/gir-generate/gendata"
 	"github.com/diamondburned/gotk4/gir/girgen/types"
 )
 
@@ -30,7 +30,7 @@ var preprocessors = []types.Preprocessor{
 	types.PreprocessorFunc(func(repos gir.Repositories) {
 		layershell := repos.FromPkg("gtk-layer-shell-0")
 		layershell.Packages = append(layershell.Packages, gir.Package{
-			Name: "gtk+-3.0",
+			Name: "gtk+-4.0",
 		})
 	}),
 }
