@@ -8,7 +8,7 @@ import (
 	"os"
 
 	"github.com/diamondburned/gotk4/gir"
-	"github.com/diamondburned/gotk4/gir/cmd/gir-generate/gendata"
+	//  "github.com/diamondburned/gotk4/gir/cmd/gir-generate/gendata"
 
 	//  "github.com/diamondburned/gotk4/gir/cmd/gir-generate/genutil"
 	"github.com/diamondburned/gotk4/gir/girgen"
@@ -16,7 +16,8 @@ import (
 	//  "github.com/diamondburned/gotk4/gir/cmd/gir_generate/genutil"
 	//  "github.com/diamondburned/gotk4/gir/girgen"
 	//  "github.com/diamondburned/gotk4/gir/girgen"
-	genutil "github.com/diamondburned/gotk4/gir/cmd/gir-generate/genmain"
+	"github.com/diamondburned/gotk4/gir/cmd/gir-generate/gendata"
+	"github.com/diamondburned/gotk4/gir/cmd/gir-generate/genmain"
 	// gir/cmd/gir-generate/genmain/genmain.go
 	// "github.com/diamondburned/gotk4/gir/cmd/gir_generate/genutil"
 	// "github.com/diamondburned/gotk4/gir/girgen"
@@ -48,38 +49,38 @@ func main() {
 	var repos gir.Repositories
 
 	// Load all of gotk4's packages first.
-	genutil.MustAddPackages(&repos, gendata.Packages)
+	genmain.MustAddPackages(&repos, gendata.Packages)
 	// Get a map of exteral imports for packages that gotk4 already generates.
-	overrides := genutil.LoadExternOverrides(gotk4Module, repos)
+	overrides := genmain.LoadExternOverrides(gotk4Module, repos)
 
 	// Add our own packages in.
-	genutil.MustAddPackages(&repos, packages)
+	genmain.MustAddPackages(&repos, packages)
 	// Dump the added packages down.
-	genutil.PrintAddedPkgs(repos)
+	genmain.PrintAddedPkgs(repos)
 
 	if listPkg {
 		return
 	}
 
-	gen := girgen.NewGenerator(repos, genutil.ModulePath(adwaitaModule, overrides))
+	gen := girgen.NewGenerator(repos, genmain.ModulePath(adwaitaModule, overrides))
 	gen.Logger = log.New(os.Stderr, "girgen: ", log.Lmsgprefix)
 	gen.AddFilters(gendata.Filters)
 	gen.AddFilters(filters)
 	gen.ApplyPreprocessors(preprocessors)
 	gen.ApplyPreprocessors(gendata.Preprocessors)
 
-	if err := genutil.CleanDirectory(output, pkgExceptions); err != nil {
+	if err := genmain.CleanDirectory(output, pkgExceptions); err != nil {
 		log.Fatalln("failed to clean output directory:", err)
 	}
 
-	if errors := genutil.GeneratePackages(gen, output, packages); len(errors) > 0 {
+	if errors := genmain.GeneratePackages(gen, output, packages); len(errors) > 0 {
 		for _, err := range errors {
 			log.Println("generation error:", err)
 		}
 		os.Exit(1)
 	}
 
-	if err := genutil.EnsureDirectory(output, pkgExceptions, pkgGenerated); err != nil {
+	if err := genmain.EnsureDirectory(output, pkgExceptions, pkgGenerated); err != nil {
 		log.Fatalln("error verifying generation:", err)
 	}
 }

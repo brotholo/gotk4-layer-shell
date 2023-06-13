@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/diamondburned/gotk4/gir"
-	"github.com/diamondburned/gotk4/gir/cmd/gir-generate/gendata"
+	"github.com/diamondburned/gotk4/gir/cmd/gir-generate/genmain"
 	"github.com/diamondburned/gotk4/gir/girgen/types"
 )
 
@@ -11,8 +11,8 @@ const (
 	adwaitaModule = "github.com/diamondburned/gotk4-layer-shell/pkg"
 )
 
-var packages = []gendata.Package{
-	{PkgName: "gtk-layer-shell-0", Namespaces: nil},
+var packages = []genmain.Package{
+	{Name: "gtk-layer-shell-0", Namespaces: nil},
 }
 
 var pkgGenerated = []string{
