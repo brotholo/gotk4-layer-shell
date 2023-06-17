@@ -228,11 +228,12 @@ func GetExclusiveZone(window *gtk.Window) int {
 //   - ok: if keybaord interacitvity is enabled.
 func GetKeyboardInteractivity(window *gtk.Window) bool {
 	var _arg1 *C.GtkWindow // out
-	var _cret C.gboolean   // in
+	//  var _cret C.gboolean   // in
 
 	_arg1 = (*C.GtkWindow)(unsafe.Pointer(externglib.InternObject(window).Native()))
 
-	_cret = C.gtk_layer_get_keyboard_interactivity(_arg1)
+	//  _cret = C.gtk_layer_get_keyboard_interactivity(_arg1)
+	_cret := C.gtk_layer_get_keyboard_mode(_arg1)
 	runtime.KeepAlive(window)
 
 	var _ok bool // out
@@ -537,15 +538,19 @@ func SetExclusiveZone(window *gtk.Window, exclusiveZone int) {
 //   - window: layer surface.
 //   - interactivity
 func SetKeyboardInteractivity(window *gtk.Window, interactivity bool) {
-	var _arg1 *C.GtkWindow // out
-	var _arg2 C.gboolean   // out
+	//  var _arg1 *C.GtkWindow // out
+	//  var _arg2 C.gboolean   // out
 
-	_arg1 = (*C.GtkWindow)(unsafe.Pointer(externglib.InternObject(window).Native()))
 	if interactivity {
-		_arg2 = C.TRUE
+		_arg1 := (*C.GtkWindow)(unsafe.Pointer(externglib.InternObject(window).Native()))
+		//  _arg2 = C.TRUE
+		C.gtk_layer_set_keyboard_mode(_arg1, C.TRUE)
 	}
+	//  else {
+	//  C.gtk_layer_set_keyboard_mode(_arg1, C.FALSE)
+	//  }
 
-	C.gtk_layer_set_keyboard_interactivity(_arg1, _arg2)
+	//  C.gtk_layer_set_keyboard_interactivity(_arg1, _arg2)
 	runtime.KeepAlive(window)
 	runtime.KeepAlive(interactivity)
 }
