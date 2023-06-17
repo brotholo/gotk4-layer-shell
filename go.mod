@@ -1,4 +1,4 @@
-module github.com/diamondburned/gotk4-layer-shell
+module github.com/brotholo/gotk4-layer-shell
 
 go 1.17
 
